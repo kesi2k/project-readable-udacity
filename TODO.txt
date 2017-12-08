@@ -1,0 +1,24 @@
+TODO:
+
+Create reducers for categories and others then combine it in index.js
+
+	0) Construct API call
+	1) Setup action with API call
+	2) Setup reducer which takes action and state and returns new state
+	3) Attach react-component with connect to redux, pass in imported action and use mapstateToProps
+
+
+
+	Redux stores are setup in the reducers.
+	Use react-redux to connect components (via mapStateToProps) to react components
+
+
+	Main Page:
+		All categories. Pass in posts component to categories
+
+		All posts. Pass
+
+
+
+Next ALLPOSTS setup for all of above
+	
