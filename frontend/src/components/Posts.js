@@ -5,6 +5,17 @@ import { getPosts } from '../actions/actionAllPosts.js'
 
 
 class AllPosts extends Component {
+
+    state = {
+    newPostModal: false
+  }
+
+  addPost = function()
+  {
+    console.log('Works')
+  }
+
+
   componentWillMount(){
     this.props.getPosts()
   }
@@ -12,19 +23,28 @@ class AllPosts extends Component {
   render(){
     const { posts } = this.props.posts
     return (
-      <div>
+      <div style={{"margin-top": 70}}>
         <h1> Posts</h1>
           {posts === undefined
             ? <h4> Posts Loading</h4>
             :
-              <ul style={{"listStyle":"none"}}>
-                {posts.map((post) => (
-                  <li key = {post.id} style={{"margin-bottom": 25}}>
-                    {post.title}
-                  </li>
-                  )
-                  )}
-              </ul>
+              <div>
+                <ul style={{"listStyle":"none"}}>
+                  {posts.map((post) => (
+                    <div key = {post.id}>
+                      <h3 style={{"margin-top": 40}} >Category: {post.category}</h3>
+                      <li style={{"margin-bottom": 25}}>
+                        {post.title}
+                      </li>
+                      <p> {post.body} </p>
+                    </div>
+                    )
+                    )}
+                </ul>
+                <button className='icon-btn' onClick={this.addPost} style={{"margin-bottom": 50}}>
+                  Add Post
+                </button>
+              </div>
           }
       </div>
     )
@@ -32,7 +52,8 @@ class AllPosts extends Component {
 }
 
 function mapSateToProps(state){
-  return {posts: state}
+  console.log(state)
+  return {posts: state.postsReducer}
 
 }
 

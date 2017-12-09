@@ -25,6 +25,9 @@ export default function(state=catObj, action){
 */
 
 
-export default postsReducer
+export default combineReducers({
+	postsReducer,
+	catsReducer
+})
 
 

@@ -19,9 +19,9 @@ class Categories extends Component {
             :
               <ul style={{"listStyle":"none"}}>
                 {cats.map((cat) => (
-                  <li key = {cat.path} style={{"margin-bottom": 25}}>
-                    {cat.name}
-                  </li>
+                    <li key = {cat.path} style={{"margin-bottom": 25}}>
+                      <h3>{cat.name}</h3>
+                    </li>
                   )
                   )}
               </ul>
@@ -32,7 +32,8 @@ class Categories extends Component {
 }
 
 function mapSateToProps(state){
-  return {categories: state}
+  console.log(state)
+  return {categories: state.catsReducer}
 
 }
 

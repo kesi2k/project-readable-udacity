@@ -1,5 +1,12 @@
 TODO:
 
+Info for user to fill out: body, category, title
+
+AddPost : author, body, category, commentCount, deleted, id, timestamp, title, voteScore
+
+
+
+
 Create reducers for categories and others then combine it in index.js
 
 	0) Construct API call
@@ -18,7 +25,4 @@ Create reducers for categories and others then combine it in index.js
 
 		All posts. Pass
 
-
-
-Next ALLPOSTS setup for all of above
 	
