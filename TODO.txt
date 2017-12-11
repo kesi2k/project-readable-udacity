@@ -1,6 +1,9 @@
 TODO:
 
-Info for user to fill out: body, category, title
+
+1) Save info in NEWPOST
+
+
 
 AddPost : author, body, category, commentCount, deleted, id, timestamp, title, voteScore
 

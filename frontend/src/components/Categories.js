@@ -19,7 +19,7 @@ class Categories extends Component {
             :
               <ul style={{"listStyle":"none"}}>
                 {cats.map((cat) => (
-                    <li key = {cat.path} style={{"margin-bottom": 25}}>
+                    <li key = {cat.path} style={{"marginBottom": 25}}>
                       <h3>{cat.name}</h3>
                     </li>
                   )
