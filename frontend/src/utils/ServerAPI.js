@@ -28,6 +28,8 @@ export const getAllPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
+//export const addPost = () => 
+
     
 
 

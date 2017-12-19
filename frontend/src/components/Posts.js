@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
-import { getPosts } from '../actions/actionAllPosts.js'
+import { getPosts } from '../actions/actionPosts.js'
 import { Route, Link } from 'react-router-dom';
 
 

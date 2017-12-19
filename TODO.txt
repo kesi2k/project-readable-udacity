@@ -1,7 +1,14 @@
 TODO:
 
+1) Validate info in NewPost. Title, Post, Username
+) Create new API call in actionPost. (save to server in here)
+) Add new post in reducer
+3) New redux state should be updated on front page.
 
-1) Save info in NEWPOST
+
+
+	
+3) Then See about saving it to server then send it to server
 
 
 
