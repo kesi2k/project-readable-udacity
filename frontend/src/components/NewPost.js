@@ -36,7 +36,7 @@ componentWillMount(){
 
     //Submit info in state to server then route to front page
     addPost(this.state)
-   console.log (this.state)
+   //console.log (this.state)
 
 
   }

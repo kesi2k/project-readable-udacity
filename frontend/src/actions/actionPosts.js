@@ -8,7 +8,7 @@ PostsAPI.getCats().then((cats) => {
 */
 
 export const ALL_POSTS = 'ALL_POSTS'
-export const ADD_POSTS = 'ADD_POSTS'
+export const ADD_POST = 'ADD_POST'
 
 export function getPosts(){
 	 return dispatch => {
@@ -17,8 +17,12 @@ export function getPosts(){
 
 }
 
-export function addPost($data){
-	console.log("IN here do somehting")
-	console.log($data)
-	//posts => dispatch({type: ADD_POSTS, posts: posts})
+export function addPost(data){
+	const postData = {
+    ...data,
+    timestamp: new Date().getTime()
+  };
+	return dispatch => {
+      PostsAPI.addPostToSer().then(post => dispatch({type: ADD_POST, posts: post}));
+     }
 }

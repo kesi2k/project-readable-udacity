@@ -9,14 +9,13 @@ if (!token)
 
 
 
-
-
-
-
 const headers = {
   'Accept': 'application/json',
+  'Content-Type': 'application/json',
   'Authorization': token
 }
+
+
 
 export const getCats = () =>
   fetch(`${api}/categories`, { headers })
@@ -28,7 +27,12 @@ export const getAllPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
-//export const addPost = () => 
+export const addPostToSer = (data) => 
+  fetch(`${api}/posts`, { method: "POST", 
+                          body: JSON.stringify(data),
+                          headers })
+    .then(res => res.json())
+    .then(data => data).then(console.log(data))
 
     
 
