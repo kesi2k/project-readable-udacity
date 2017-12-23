@@ -18,11 +18,12 @@ export function getPosts(){
 }
 
 export function addPost(data){
+
 	const postData = {
     ...data,
     timestamp: new Date().getTime()
-  };
-	return dispatch => {
-      PostsAPI.addPostToSer().then(post => dispatch({type: ADD_POST, posts: post}));
+  }; 
+	 return dispatch => {
+   PostsAPI.addPostToSer(postData).then(post => dispatch({type: ADD_POST, posts: postData}));
      }
 }

@@ -35,7 +35,7 @@ componentWillMount(){
     e.preventDefault()
 
     //Submit info in state to server then route to front page
-    addPost(this.state)
+    this.props.addPost(this.state)
    //console.log (this.state)
 
 
@@ -116,4 +116,4 @@ function mapSateToProps(state){
 
 }
 
-export default connect(mapSateToProps, { getCategories })(NewPost)
+export default connect(mapSateToProps, { getCategories, addPost })(NewPost) 

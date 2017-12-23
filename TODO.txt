@@ -1,5 +1,7 @@
 TODO:
 
+FINISH REDUCER FOR ADD POST
+
 1) Validate info in NewPost. Title, Post, Username
 ) Create new API call in actionPost. (save to server in here)
 ) Add new post in reducer

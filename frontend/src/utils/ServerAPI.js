@@ -27,12 +27,17 @@ export const getAllPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
-export const addPostToSer = (data) => 
-  fetch(`${api}/posts`, { method: "POST", 
+export const addPostToSer = (data) => {
+    debugger;
+
+ return  fetch(`${api}/posts`, { method: "POST", 
                           body: JSON.stringify(data),
                           headers })
-    .then(res => res.json())
+    .then(res => { debugger; 
+      return res.json()
+    })
     .then(data => data).then(console.log(data))
+}
 
     
 
