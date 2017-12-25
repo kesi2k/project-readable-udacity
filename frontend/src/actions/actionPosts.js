@@ -1,4 +1,6 @@
 import * as PostsAPI from '../utils/ServerAPI'
+import uuid from 'uuid';
+
 
 /*
 PostsAPI.getCats().then((cats) => {
@@ -17,13 +19,22 @@ export function getPosts(){
 
 }
 
+export function getPostsByCats(cat){
+   return dispatch => {
+      PostsAPI.getPostsByCategory(cat).then(posts => dispatch({type: ALL_POSTS, posts: posts}));
+  };
+
+}
+
+
 export function addPost(data){
 
 	const postData = {
     ...data,
-    timestamp: new Date().getTime()
+    timestamp: Date.now(),
+    id: uuid()
   }; 
 	 return dispatch => {
-   PostsAPI.addPostToSer(postData).then(post => dispatch({type: ADD_POST, posts: postData}));
+   PostsAPI.addPostToSer(postData);
      }
 }

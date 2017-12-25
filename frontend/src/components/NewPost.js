@@ -6,22 +6,71 @@ import { getCategories } from '../actions/actionCategories.js'
 import { Route, Link } from 'react-router-dom';
 import { addPost } from '../actions/actionPosts.js'
 
+var errors = {};
+
+
+class Errors extends Component {
+
+  render(){
+    return(
+      <div style={{"color": "red"}}>
+        <h3> Fields required </h3>
+        <h4 > {errors.title} </h4>
+        <h4> {errors.body} </h4>
+        <h4> {errors.author} </h4>
+      </div>
+      )
+  }
+}
+
+
 
 class NewPost extends Component {
 
 constructor(props){
   super(props);
   this.state = {
-    Title: '',
-    Post:'',
-    UserName: ''
+    title: '',
+    body:'',
+    author: '',
+    category: 'react',
   }
 
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
-
 }
 
+
+validateForm(){
+  errors = {}
+
+  if (!this.state.title) {
+    errors.title = 'Title missing';
+  }
+  if (!this.state.body) {
+    errors.body = 'Post missing';
+  }
+  if (!this.state.author) {
+    errors.author = 'User missing';
+  }
+
+
+  // Form missing info mount errors Component
+  if(Object.keys(errors).length > 0){
+    // Mount errors component
+    ReactDOM.render(
+              <Errors />,
+              document.getElementById('errorHere')
+              )
+  }
+  else
+  {
+    ReactDOM.unmountComponentAtNode(document.getElementById('errorHere'))
+    return true
+  }
+  
+
+}
 
 
 componentWillMount(){
@@ -34,11 +83,20 @@ componentWillMount(){
     // Prevent page reload
     e.preventDefault()
 
-    //Submit info in state to server then route to front page
-    this.props.addPost(this.state)
+    //Validate all info is in form, then submit to server and clear state
+    if(this.validateForm())
+    {
+      this.props.addPost(this.state)
+
+      this.setState({ 
+      title: '',
+      body:'',
+      author: '',
+    })
+
+    }
+    
    //console.log (this.state)
-
-
   }
 
   //keep track of state
@@ -60,6 +118,9 @@ componentWillMount(){
     const { cats } = this.props.categories
     return (
       <div style={{"marginTop": 20}}>
+
+        <div id="errorHere"></div>
+
         <form onSubmit={this.handleSubmit}>
 
         {cats === undefined
@@ -67,9 +128,9 @@ componentWillMount(){
             :
               <div>
                Category:
-                <select>
+                <select onChange={this.handleChange} value={this.name} name="category">
                   {cats.map((cat) => (
-                      <option key = {cat.path} value={this.name} style={{"marginBottom": 25}}>
+                      <option key = {cat.path} style={{"marginBottom": 25}} >
                         {cat.name}
                       </option>
                     )
@@ -82,19 +143,19 @@ componentWillMount(){
           <br/>
               <label>
                   Title:
-                  <textarea placeholder="Title" name="Title" value={this.state.Title} onChange={this.handleChange} />
+                  <textarea placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
               </label>
           <br />
           <br/>
               <label>
                   Post:
-                  <textarea placeholder="Post" name="Post" value={this.state.Post} onChange={this.handleChange}/>
+                  <textarea placeholder="Post" name="body" value={this.state.body} onChange={this.handleChange}/>
               </label>
           <br/>
           <br/>
               <label>
                 User Name:
-                <textarea placeholder="User Name" name="UserName" value={this.state.UserName} onChange={this.handleChange} />
+                <textarea placeholder="User Name" name="author" value={this.state.author} onChange={this.handleChange} />
               </label>
           <br/>
           <br/>

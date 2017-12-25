@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
-import { getPosts } from '../actions/actionPosts.js'
+import { getPosts, getPostsByCats } from '../actions/actionPosts.js'
 import { Route, Link } from 'react-router-dom';
+//import { toUTCString } from 'datejs';
 
 
 class AllPosts extends Component {
@@ -14,11 +15,25 @@ class AllPosts extends Component {
 
 
   componentWillMount(){
-    this.props.getPosts()
+    // If props came in with a category use this API else use other
+    if(this.props.match.params.cat)
+    {
+      this.props.getPostsByCats(this.props.match.params.cat)
+    }
+    else
+    {
+      this.props.getPosts()
+    }
   }
 
   render(){
     const { posts } = this.props.posts
+
+    if(this.props){
+      console.log(this.props.match.params.cat)
+    }
+
+
     return (
       <div style={{"marginTop": 70}}>
         <h1> Posts</h1>
@@ -34,6 +49,7 @@ class AllPosts extends Component {
                         {post.title}
                       </li>
                       <p> {post.body} </p>
+                      <p> {new Date(post.timestamp).toUTCString() } </p>
                     </div>
                     )
                     )}
@@ -42,6 +58,16 @@ class AllPosts extends Component {
                   <Link to='/newpost'>
                     Add Post
                   </Link>
+                  {this.props.match.params.cat 
+                    ?
+                    <div>
+                      <br/>
+                      <Link to='/'>
+                        Front Page
+                      </Link>
+                    </div>
+                    : null
+                  }
                 </div>
               </div>
           }
@@ -57,4 +83,4 @@ function mapSateToProps(state){
 }
 
 
-export default connect(mapSateToProps, { getPosts })(AllPosts)
+export default connect(mapSateToProps, { getPosts, getPostsByCats })(AllPosts)

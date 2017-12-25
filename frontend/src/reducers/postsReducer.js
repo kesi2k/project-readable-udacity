@@ -1,4 +1,4 @@
-import  { ALL_POSTS }  from '../actions/actionPosts.js'
+import  { ALL_POSTS, ADD_POST }  from '../actions/actionPosts.js'
 
 
 
@@ -9,15 +9,17 @@ export default function(state=postsObj, action){
 
 	console.log('In reducer');
 	console.log(action)
+	console.log(state)
+	console.log(action.post)
 
 	switch(action.type){
 		case ALL_POSTS: 
 			return { ...state, posts: action.posts}
 
 		// case ADD_POST:
-		// 	return { ...state, 
-
-		// 	}
+		//  	return { ...state,
+		//  		posts: action.post		 		
+		//  	}
 
 		default:
 			return state
@@ -26,3 +28,9 @@ export default function(state=postsObj, action){
 }
 
 
+// return{
+//                 ...state,
+//                 [day]: {
+//                     ...state[day],
+//                     [meal]: null,
+//                 }

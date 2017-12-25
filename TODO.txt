@@ -1,20 +1,24 @@
 TODO:
 
-FINISH REDUCER FOR ADD POST
 
-1) Validate info in NewPost. Title, Post, Username
-) Create new API call in actionPost. (save to server in here)
-) Add new post in reducer
-3) New redux state should be updated on front page.
+
+) Link to Views depending on selected category
+	Return Posts only of that category
 
 
 
-	
-3) Then See about saving it to server then send it to server
+) Order posts by date. Also order by voteScore
+) Add the ability to edit POSTS
 
 
 
-AddPost : author, body, category, commentCount, deleted, id, timestamp, title, voteScore
+
+
+
+
+
+
+AddPost : author, body, category, commentCount, deleted, id, timestamp, title, voteScore, deleted, parentDeleted
 
 
 

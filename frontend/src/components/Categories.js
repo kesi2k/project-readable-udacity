@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
 import { getCategories } from '../actions/actionCategories.js'
+import { Route, Link } from 'react-router-dom';
+
 
 
 class Categories extends Component {
@@ -20,7 +22,9 @@ class Categories extends Component {
               <ul style={{"listStyle":"none"}}>
                 {cats.map((cat) => (
                     <li key = {cat.path} style={{"marginBottom": 25}}>
-                      <h3>{cat.name}</h3>
+                      <Link to={'/'+cat.path}>
+                         <h3>{cat.name}</h3>
+                      </Link>
                     </li>
                   )
                   )}
@@ -32,7 +36,6 @@ class Categories extends Component {
 }
 
 function mapSateToProps(state){
-  console.log(state)
   return {categories: state.catsReducer}
 
 }

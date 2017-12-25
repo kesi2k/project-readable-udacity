@@ -27,16 +27,20 @@ export const getAllPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
-export const addPostToSer = (data) => {
-    debugger;
+// GET /:category/posts
+export const getPostsByCategory = (cat) => 
+  fetch(`${api}/${cat}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data)
 
- return  fetch(`${api}/posts`, { method: "POST", 
+
+export const addPostToSer = (data) => {
+
+   fetch(`${api}/posts`, { method: "POST", 
                           body: JSON.stringify(data),
                           headers })
-    .then(res => { debugger; 
-      return res.json()
-    })
-    .then(data => data).then(console.log(data))
+    .then(res => res.json())
+    .then(data => data)
 }
 
     
