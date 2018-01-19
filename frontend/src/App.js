@@ -4,6 +4,7 @@ import './App.css';
 import Categories from './components/Categories'
 import Posts from './components/Posts'
 import NewPost from './components/NewPost'
+import EditPost from './components/EditPost'
 import { Route, Link, Switch } from 'react-router-dom';
 
 
@@ -32,6 +33,9 @@ class App extends Component {
             />
 
             <Route exact path='/:cat' component={props => <Posts {...props} />} 
+            />
+
+            <Route exact path='/posts/:id' component={props => <EditPost {...props}/>} 
             />
           </Switch>
 

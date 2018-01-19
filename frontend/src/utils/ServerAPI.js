@@ -33,6 +33,18 @@ export const getPostsByCategory = (cat) =>
     .then(res => res.json())
     .then(data => data)
 
+// Get a specific post
+// GET /posts/:id` | Get the details of a single post
+
+export const getPostById = (postId) => 
+ fetch(`${api}/posts/${postId}`, { headers })
+  .then(res => res.json())
+  .then(data => data)
+
+
+//`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
+
+
 
 export const addPostToSer = (data) => {
 

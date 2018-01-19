@@ -29,11 +29,6 @@ class AllPosts extends Component {
   render(){
     const { posts } = this.props.posts
 
-    if(this.props){
-      console.log(this.props.match.params.cat)
-    }
-
-
     return (
       <div style={{"marginTop": 70}}>
         <h1> Posts</h1>
@@ -50,11 +45,14 @@ class AllPosts extends Component {
                       </li>
                       <p> {post.body} </p>
                       <p> {new Date(post.timestamp).toUTCString() } </p>
+                      <Link to={'/posts/'+post.id}>
+                        Edit Post
+                      </Link>
                     </div>
                     )
                     )}
                 </ul>
-                <div style={{"marginBottom": 25}}>
+                <div style={{"marginBottom": 75, "marginTop": 50}}>
                   <Link to='/newpost'>
                     Add Post
                   </Link>
@@ -77,7 +75,6 @@ class AllPosts extends Component {
 }
 
 function mapSateToProps(state){
-  console.log(state)
   return {posts: state.postsReducer}
 
 }

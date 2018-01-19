@@ -11,6 +11,7 @@ PostsAPI.getCats().then((cats) => {
 
 export const ALL_POSTS = 'ALL_POSTS'
 export const ADD_POST = 'ADD_POST'
+export const SINGLE_POST = 'SINGLE_POST'
 
 export function getPosts(){
 	 return dispatch => {
@@ -26,7 +27,6 @@ export function getPostsByCats(cat){
 
 }
 
-
 export function addPost(data){
 
 	const postData = {
@@ -37,4 +37,13 @@ export function addPost(data){
 	 return dispatch => {
    PostsAPI.addPostToSer(postData);
      }
+
 }
+
+export function getSpecificPost(postId){
+    return dispatch => {
+      PostsAPI.getPostById(postId).then(post => dispatch ({type: SINGLE_POST, post: post}))
+    }
+
+  }
+
