@@ -37,9 +37,9 @@ class EditPost extends Component
 
   componentWillMount()
   {
-    const id = this.props.match.params.id
-    console.log('In component will mount',id)
-    this.props.getSpecificPost(id);
+    //const id = this.props.match.params.id
+    //console.log('In component will mount',id)
+    //this.props.getSpecificPost(id);
   }
 
 
@@ -53,6 +53,19 @@ class EditPost extends Component
 componentDidMount(){
 
   console.log('In component did mount',this.props.post)
+
+  const id = this.props.match.params.id
+
+  this.props.getSpecificPost(id);
+
+  if(this.props.post){
+      const initData = {
+        title: this.props.post.title,
+        body: this.props.post.body,
+      };
+      this.props.initialize(initData);
+    }
+
 
 }
 
@@ -84,13 +97,6 @@ componentDidMount(){
       return (
         <h3> Loading </h3>
         )
-    }
-    else if(post){
-      const initData = {
-        title: this.props.post.title,
-        body: this.props.post.body,
-      };
-      this.props.initialize(initData);
     }
 
     return (

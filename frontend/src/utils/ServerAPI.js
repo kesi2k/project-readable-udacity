@@ -42,7 +42,31 @@ export const getPostById = (postId) =>
   .then(data => data)
 
 
+
+
+
+
 //`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
+export const editSpecificPost = (data) => {
+  const editPostData = {
+    ...data
+  }
+  fetch(`${api}/posts/${data.id}`, { method: "PUT", 
+                                    body: JSON.stringify(data),
+                                    headers })
+    .then(res => res.json())
+    .then(data => data)
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

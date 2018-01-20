@@ -1,4 +1,4 @@
-import  { ALL_POSTS, ADD_POST, SINGLE_POST }  from '../actions/actionPosts.js'
+import  { ALL_POSTS, ADD_POST, SINGLE_POST, EDIT_POST }  from '../actions/actionPosts.js'
 import _ from 'lodash';
 
 
@@ -18,17 +18,19 @@ export default function(state={}, action){
 		case ALL_POSTS: 
 			return { ...state, posts: action.posts}
 
-		// case ADD_POST:
-		//  	return { ...state,
-		//  		posts: action.post		 		
-		//  	}
 		case SINGLE_POST:
 			const post = action.post;
 			const newState =  { ...state };
 			newState[post.id] = post;
 
-			
 			return newState
+
+		case EDIT_POST:
+			const editedPost = action.post;
+			const newEditedState = { ...state };
+			newEditedState[editedPost.id] = post;
+
+			return newEditedState
 
 		default:
 			return state
