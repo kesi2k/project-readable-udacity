@@ -42,19 +42,22 @@ export function addPost(data){
 }
 
 
-export function editPost(post){
+/*export function editPost(id, post, callback){
   return dispatch => {
-    PostsAPI.editSpecificPost(post).then(post => dispatch({ type:EDIT_POST, post: post}))
+    PostsAPI.editSpecificPost(id, post).then(res => {
+                                            callback();
+                                            dispatch({ type:EDIT_POST, post: post})
+                                          })
 
   }
 
-}
+}*/
 
 
-export function getSpecificPost(postId){
-    return dispatch => {
-      PostsAPI.getPostById(postId).then(post => dispatch ({type: SINGLE_POST, post: post}))
-    }
+// export function getSpecificPost(postId){
+//     return dispatch => {
+//       PostsAPI.getPostById(postId).then(post => dispatch ({type: SINGLE_POST, post: post}))
+//     }
 
-  }
+//   }
 

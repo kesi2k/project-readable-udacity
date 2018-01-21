@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
 import { Route, Link } from 'react-router-dom';
-import { getSpecificPost } from '../actions/actionPosts.js'
+import {  editPost } from '../actions/actionPosts.js'
 import { Field, reduxForm } from 'redux-form';
 import { reducer as formReducer } from 'redux-form'
+import { editSpecificPost, getPostById } from '../utils/ServerAPI'
 
 
 
 class EditPost extends Component
 {
+  // TODO: Add category selection. No place in the server setup to handle it. Ill leave it out.
 
   // Field object passed in contains event handlers that lets Form track this component.
 
@@ -20,7 +22,12 @@ class EditPost extends Component
 
     // Three states in redux internally: Pristine, Touched and Invalid
     return(
-      <div className={className}>
+      <div className={className}
+       style={{
+            height: 80,
+            width: 200,
+            margin: '10px auto',
+          }}>
         <label> {field.label} </label>
           <input
             type="text"
@@ -43,28 +50,22 @@ class EditPost extends Component
   }
 
 
-
-
-
-
-
-
-
 componentDidMount(){
 
   console.log('In component did mount',this.props.post)
 
   const id = this.props.match.params.id
 
-  this.props.getSpecificPost(id);
-
-  if(this.props.post){
+  this.props.getPostById(id, (post) => {
+    if(post){
       const initData = {
-        title: this.props.post.title,
-        body: this.props.post.body,
+        title: post.title,
+        body: post.body,
       };
       this.props.initialize(initData);
     }
+
+  });
 
 
 }
@@ -78,7 +79,15 @@ componentDidMount(){
     onSubmit(values)
   {
     // Route (root index.js file) passes in properties to a component rendered in it. History is one such prop
+    let id = this.props.post.id
+    console.log(values)
     console.log('In submit', values)
+
+
+    
+    this.props.editSpecificPost(id, values, () => {
+      this.props.history.push('/');
+    });
 
   }
 
@@ -134,4 +143,4 @@ function mapStateToProps(state, ownProps)
 
 export default reduxForm({
   form: 'EditForm'
-})(connect(mapStateToProps, { getSpecificPost })(EditPost))
+})(connect(mapStateToProps, { editSpecificPost, getPostById })(EditPost))

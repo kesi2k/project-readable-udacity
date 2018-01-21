@@ -1,4 +1,8 @@
+import axios from 'axios';
+import  { EDIT_POST, SINGLE_POST }  from '../actions/actionPosts.js'
+
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
+
 
 let token = localStorage.token
 
@@ -14,6 +18,10 @@ const headers = {
   'Content-Type': 'application/json',
   'Authorization': token
 }
+
+
+axios.defaults.headers = headers;
+
 
 
 
@@ -36,10 +44,23 @@ export const getPostsByCategory = (cat) =>
 // Get a specific post
 // GET /posts/:id` | Get the details of a single post
 
-export const getPostById = (postId) => 
- fetch(`${api}/posts/${postId}`, { headers })
+export const getPostById = (postId, callback) => {
+    return dispatch => {
+    axios.get(`${api}/posts/${postId}`)
+      .then(res => {
+        callback(res.data)
+        dispatch({ type:SINGLE_POST, post: res.data})
+      })
+
+  }
+
+
+
+  /* fetch(`${api}/posts/${postId}`, { headers })
   .then(res => res.json())
-  .then(data => data)
+  .then(data => data)*/
+
+}
 
 
 
@@ -47,19 +68,19 @@ export const getPostById = (postId) =>
 
 
 //`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
-export const editSpecificPost = (data) => {
-  const editPostData = {
-    ...data
+export const editSpecificPost = (id, data, callback) => {
+
+
+  return dispatch => {
+    axios.put(`${api}/posts/${id}`, data)
+      .then(res => {
+        callback()
+        dispatch({ type:EDIT_POST, post: res.data})
+      })
+
   }
-  fetch(`${api}/posts/${data.id}`, { method: "PUT", 
-                                    body: JSON.stringify(data),
-                                    headers })
-    .then(res => res.json())
-    .then(data => data)
+
 }
-
-
-
 
 
 
