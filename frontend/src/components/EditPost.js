@@ -22,14 +22,10 @@ class EditPost extends Component
 
     // Three states in redux internally: Pristine, Touched and Invalid
     return(
-      <div className={className}
-       style={{
-            height: 80,
-            width: 200,
-            margin: '10px auto',
-          }}>
+      <div className={className}>
         <label> {field.label} </label>
           <input
+            className="form-control input-group"
             type="text"
             {...field.input}
           />
@@ -74,14 +70,13 @@ componentDidMount(){
 
 
 
-
-
-    onSubmit(values)
+  onSubmit(values)
   {
     // Route (root index.js file) passes in properties to a component rendered in it. History is one such prop
     let id = this.props.post.id
     console.log(values)
     console.log('In submit', values)
+
 
 
     
@@ -111,7 +106,7 @@ componentDidMount(){
     return (
           <div>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}
-              className="input-group">
+              >
               <Field
                 label="Title"
                 name="title"
@@ -122,7 +117,7 @@ componentDidMount(){
                 name="body"
                 component={this.renderField}
               />
-              <button type="submit" className="btn btn-primary"> Submit</button>
+              <button type="submit" className="btn btn-primary" style={{"marginRight": 10}}> Submit</button>
               <Link to="/"><button className="btn btn-warning"> Cancel</button></Link>
             </form>
           </div>
@@ -131,6 +126,25 @@ componentDidMount(){
 
 }
 
+function validate(values)
+{
+  // values { title: 'blabla', categories:'blabla', content:'blabla'}
+  const errors = {}
+
+  // Validate inputs from values
+  if(!values.title || values.title.length < 3)
+  {
+    errors.title= "A title longer than 3 characters is required"
+  }
+  if(!values.body)
+  {
+    errors.body="A category is required"
+  }
+
+  // If errors is empty, fine to submit form.
+  return errors
+
+}
 
 
 function mapStateToProps(state, ownProps)
@@ -142,5 +156,6 @@ function mapStateToProps(state, ownProps)
 }
 
 export default reduxForm({
+  validate: validate,
   form: 'EditForm'
 })(connect(mapStateToProps, { editSpecificPost, getPostById })(EditPost))

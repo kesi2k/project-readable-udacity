@@ -1,4 +1,4 @@
-import  { ALL_POSTS, ADD_POST, SINGLE_POST, EDIT_POST }  from '../actions/actionPosts.js'
+import  { ALL_POSTS, ADD_POST, SINGLE_POST, EDIT_POST, DELETE_POST }  from '../actions/actionPosts.js'
 import _ from 'lodash';
 
 
@@ -31,6 +31,10 @@ export default function(state={}, action){
 			newEditedState[editedPost.id] = post;
 
 			return newEditedState
+
+		case DELETE_POST:
+			return _.omit(state, action.payload);
+
 
 		default:
 			return state

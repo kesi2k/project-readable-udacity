@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { EDIT_POST, SINGLE_POST }  from '../actions/actionPosts.js'
+import  { EDIT_POST, SINGLE_POST, DELETE_POST }  from '../actions/actionPosts.js'
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
 
@@ -53,18 +53,7 @@ export const getPostById = (postId, callback) => {
       })
 
   }
-
-
-
-  /* fetch(`${api}/posts/${postId}`, { headers })
-  .then(res => res.json())
-  .then(data => data)*/
-
 }
-
-
-
-
 
 
 //`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
@@ -79,16 +68,7 @@ export const editSpecificPost = (id, data, callback) => {
       })
 
   }
-
 }
-
-
-
-
-
-
-
-
 
 
 export const addPostToSer = (data) => {
@@ -100,24 +80,15 @@ export const addPostToSer = (data) => {
     .then(data => data)
 }
 
-    
+// `DELETE /posts/:id` | Sets the deleted flag for a post to 'true'. <br> Sets the parentDeleted flag for all child comments to 'true'. | |
 
+export const deletePost = (id, callback) => {
+  return dispatch => {
+    axios.delete(`${api}/posts/${id}`)
+      .then(res => {
+          callback()
+          dispatch({ type:DELETE_POST, post: id})
+        })
+  }
+}
 
-/*
-
-export const remove = (contact) =>
-  fetch(`${api}/contacts/${contact.id}`, { method: 'DELETE', headers })
-    .then(res => res.json())
-    .then(data => data.contact)
-
-export const create = (body) =>
-  fetch(`${api}/contacts`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  }).then(res => res.json())
-
-*/

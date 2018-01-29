@@ -143,28 +143,30 @@ componentWillMount(){
           <br/>
               <label>
                   Title:
-                  <textarea placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+                  <textarea className="form-control input-group" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
               </label>
           <br />
           <br/>
               <label>
                   Post:
-                  <textarea placeholder="Post" name="body" value={this.state.body} onChange={this.handleChange}/>
+                  <textarea className="form-control input-group" placeholder="Post" name="body" value={this.state.body} onChange={this.handleChange}/>
               </label>
           <br/>
           <br/>
               <label>
                 User Name:
-                <textarea placeholder="User Name" name="author" value={this.state.author} onChange={this.handleChange} />
+                <textarea className="form-control input-group" placeholder="User Name" name="author" value={this.state.author} onChange={this.handleChange} />
               </label>
           <br/>
           <br/>
 
-          <button style={{"marginBottom": 5}}>Submit Post</button>
+          <button className="btn btn-primary" style={{"marginBottom": 5}}>Submit Post</button>
           <br/>
 
           <Link to='/'>
-            Front Page/Cancel
+            <button className="btn btn-warning">
+              Front Page/Cancel
+            </button>
           </Link>
         </form>              
       </div >

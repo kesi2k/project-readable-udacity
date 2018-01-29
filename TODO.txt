@@ -1,25 +1,10 @@
 TODO:
-) Populate form with previous info
+
+	) Sort posts by date and score
 
 
-) Handle user submission to EDIT POST
-
-
-
-) Order posts by date. Also order by voteScore
-
-) Add the ability to edit POSTS.
-	Edit Button. On click takes you to edit page with Post info filled
-	Need the categories from state and a specific post.(Found with the ID)
-
-
-
-componentWillMount(){
-    this.props.getSpecificPost(this.props.match.params.id)
-    this.props.getCategories()
-  }
-
-
+	) MAKE COMMENTS ON POSTS
+	) EDIT And Delete Comments
 
 
 

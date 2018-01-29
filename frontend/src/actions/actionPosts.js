@@ -13,6 +13,7 @@ export const ALL_POSTS = 'ALL_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const SINGLE_POST = 'SINGLE_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export function getPosts(){
 	 return dispatch => {

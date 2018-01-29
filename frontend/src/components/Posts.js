@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
 import { getPosts, getPostsByCats } from '../actions/actionPosts.js'
 import { Route, Link } from 'react-router-dom';
+import { deletePost } from '../utils/ServerAPI'
+
 //import { toUTCString } from 'datejs';
 
 
@@ -12,6 +14,14 @@ class AllPosts extends Component {
     state = {
     
   }
+
+  deletePostButton(postId) {
+    console.log('In deletePostButt function', postId)
+    this.props.deletePost(postId, () => {
+      this.props.history.push('/');
+    });
+  }
+
 
 
   componentWillMount(){
@@ -44,17 +54,25 @@ class AllPosts extends Component {
                         {post.title}
                       </li>
                       <p> {post.body} </p>
+                      <p> Author: { post.author } </p>
                       <p> {new Date(post.timestamp).toUTCString() } </p>
                       <Link to={'/posts/'+post.id}>
-                        Edit Post
+                        <button className="btn btn-warning">
+                          Edit Post
+                        </button>
                       </Link>
+                      <button className="btn btn-danger" style={{"marginLeft": 10}}  onClick={ () => this.deletePostButton(post.id)}>
+                        Delete Post
+                      </button>
                     </div>
                     )
                     )}
                 </ul>
                 <div style={{"marginBottom": 75, "marginTop": 50}}>
                   <Link to='/newpost'>
-                    Add Post
+                    <button className="btn btn-primary">
+                     Add Post
+                    </button>
                   </Link>
                   {this.props.match.params.cat 
                     ?
@@ -80,4 +98,4 @@ function mapSateToProps(state){
 }
 
 
-export default connect(mapSateToProps, { getPosts, getPostsByCats })(AllPosts)
+export default connect(mapSateToProps, { getPosts, getPostsByCats, deletePost })(AllPosts)
