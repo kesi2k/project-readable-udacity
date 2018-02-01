@@ -20,10 +20,9 @@ class App extends Component {
         <header className="App-header">    
           <h1 className="App-title">Kesi's Reddit clone in reactRedux </h1>
         </header>
-          <Switch>
-            <Route exact path='/' component={props => <Categories {...props} />}
-            />
-          </Switch>
+
+        <Categories />
+
 
           <Switch>
            <Route exact path='/' component={props => <Posts {...props} />}

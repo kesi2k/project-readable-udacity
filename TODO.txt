@@ -1,4 +1,5 @@
 TODO:
+	) All available categories in any list view.
 
 	) Sort posts by date and score
 
