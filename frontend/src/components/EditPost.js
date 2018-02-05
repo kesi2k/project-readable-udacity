@@ -48,7 +48,7 @@ class EditPost extends Component
 
 componentDidMount(){
 
-  console.log('In component did mount',this.props.post)
+ // console.log('In component did mount',this.props.post)
 
   const id = this.props.match.params.id
 

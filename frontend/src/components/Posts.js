@@ -39,6 +39,16 @@ class AllPosts extends Component {
   render(){
     const { posts } = this.props.posts
 
+    const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 5
+        }}
+    />
+    );
+
     return (
       <div style={{"marginTop": 70}}>
         <h1> Posts</h1>
@@ -71,14 +81,13 @@ class AllPosts extends Component {
                         </button>
                       </div>
 
-
                       <div className="col-md-6 col-lg-6">
                         <p style={{"marginTop": 70}}> Comment Count: { post.commentCount } </p>
                         <p style={{"marginTop": 40}}> Post Vote:{ post.voteScore } </p>
-
-
-
-                      </div>
+                        <Link to={'/' + post.category + '/' +post.id}>
+                          <p> Link to post and comments. </p>
+                        </Link>
+                      </div>           
 
                     </div>
 

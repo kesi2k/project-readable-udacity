@@ -1,5 +1,24 @@
 TODO:
-	) All available categories in any list view.
+	Can be done the same way as edit posts...except not in a text field. Just display them.
+	Comments below that.
+
+		Component for post details
+		
+		Component for comment Detail
+
+
+
+	) Post detail page at /:category/:post_id
+		Get to this page by clicking on the comment count
+		Display all the comments here. List to edit comments here.
+		
+
+
+
+
+
+
+
 
 	) Sort posts by date and score
 

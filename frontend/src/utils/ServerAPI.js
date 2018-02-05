@@ -48,18 +48,33 @@ export const getPostById = (postId, callback) => {
     return dispatch => {
     axios.get(`${api}/posts/${postId}`)
       .then(res => {
-        callback(res.data)
+        if(typeof callback !== 'undefined')
+        {
+          callback(res.data)
+        }
         dispatch({ type:SINGLE_POST, post: res.data})
       })
 
   }
 }
 
+// | `GET /posts/:id/comments` | Get all the comments for a single post. | |
+// Get comments associated with a specific post
+
+
+
+
+
+
+
+
+
+
+
+
 
 //`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
 export const editSpecificPost = (id, data, callback) => {
-
-
   return dispatch => {
     axios.put(`${api}/posts/${id}`, data)
       .then(res => {
@@ -72,7 +87,6 @@ export const editSpecificPost = (id, data, callback) => {
 
 
 export const addPostToSer = (data) => {
-
    fetch(`${api}/posts`, { method: "POST", 
                           body: JSON.stringify(data),
                           headers })
