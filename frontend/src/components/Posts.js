@@ -39,6 +39,11 @@ class AllPosts extends Component {
   render(){
     const { posts } = this.props.posts
 
+    if(posts)
+    {
+      console.log('In comments render', posts)
+    }
+
     const ColoredLine = ({ color }) => (
     <hr
         style={{

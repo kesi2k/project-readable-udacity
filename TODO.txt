@@ -1,10 +1,8 @@
 TODO:
-	Can be done the same way as edit posts...except not in a text field. Just display them.
 	Comments below that.
-
-		Component for post details
 		
-		Component for comment Detail
+		Component for comment Details
+		Reducer for comments
 
 
 
@@ -27,12 +25,6 @@ TODO:
 	) EDIT And Delete Comments
 
 
-
-
-
-
-
-AddPost : author, body, category, commentCount, deleted, id, timestamp, title, voteScore, deleted, parentDeleted
 
 
 

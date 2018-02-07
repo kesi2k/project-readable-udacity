@@ -10,7 +10,7 @@ class PostDetail extends Component
 
 	componentDidMount()
 	{
-		console.log('In component did mount',this.props)
+		//console.log('In component did mount',this.props)
 		const id = this.props.match.params.id
 		this.props.getPostById(id)
 	}
@@ -48,7 +48,6 @@ class PostDetail extends Component
 			 	</Link>
 
 			 	<div style={{"marginTop": 70}}>
-			 		<h5> Comments here. </h5>
 			 	</div>
 
 
@@ -62,7 +61,7 @@ class PostDetail extends Component
 
 function mapStateToProps(state, ownProps)
 {
-  console.log('In mapStToP', state)
+  //console.log('In mapStToP', state)
   return {
     post: state.postsReducer[ownProps.match.params.id]
   }

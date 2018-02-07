@@ -58,20 +58,6 @@ export const getPostById = (postId, callback) => {
   }
 }
 
-// | `GET /posts/:id/comments` | Get all the comments for a single post. | |
-// Get comments associated with a specific post
-
-
-
-
-
-
-
-
-
-
-
-
 
 //`PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
 export const editSpecificPost = (id, data, callback) => {
