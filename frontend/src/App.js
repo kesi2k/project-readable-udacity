@@ -7,6 +7,7 @@ import NewPost from './components/NewPost';
 import EditPost from './components/EditPost';
 import PostDetail from './components/PostDetail';
 import Comments from './components/Comments.js'
+import NewComment from './components/NewComment.js'
 import { Route, Link, Switch } from 'react-router-dom';
 
 
@@ -36,6 +37,9 @@ class App extends Component {
             />
             
             <Route exact path='/newpost' component={props => <NewPost {...props} />} 
+            />
+
+            <Route exact path='/:cat/:id/newcomment' component={props => <NewComment {...props} />} 
             />
 
             <Route exact path='/:cat' component={props => <Posts {...props} />} 

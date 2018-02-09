@@ -1,6 +1,9 @@
 import axios from 'axios';
+import uuid from 'uuid';
+
 
 export const ALL_COMMENTS = 'ALL_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
@@ -31,7 +34,45 @@ export function getCommentsByPostId(postId)
 			.then(res => {
 				dispatch({ type:ALL_COMMENTS, comments: res.data })
 			})
+	}
+}
 
+// `POST /comments` | Add a comment to a post. | **id** - Any unique ID. As with posts, UUID is probably the best here.
+// <br> **timestamp** - [Timestamp] Get this however you want. 
+//<br> **body** - [String] <br> **author** - [String] <br> **parentId** - Should match a post id in the database. |
+// | `GET /comments/:id` | Get the details for a single comment. | |
+// | `POST /comments/:id` | Used for voting on a comment. | **option** - [String]: Either `"upVote"` or `"downVote"`.  |
+// | `PUT /comments/:id` | Edit the details of an existing comment. | **timestamp** - timestamp. Get this however you want. <br> **body** - [String] |
+// | `DELETE /comments/:id` | Sets a comment's deleted flag to `true`. | &nbsp; |
+export function addCommentToServer(data, commentParentId)
+{
+
+	const commentData = {
+	    ...data,
+	    timestamp: Date.now(),
+	    id: uuid(),
+	    parentId: commentParentId
+	  }; 
+
+	console.log("in action", commentData);
+	return dispatch => {
+		axios.post(`${api}/comments`, commentData)
+			.then(res => {
+				dispatch({ type: ADD_COMMENT, comments: res.data})
+			})
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

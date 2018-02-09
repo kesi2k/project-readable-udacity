@@ -1,28 +1,18 @@
 TODO:
 	Comments below that.
 		
-		Component for comment Details
-		Reducer for comments
+		Component for comment EDIT Details
 
+		DELETE COMMENT LOGIC.
 
-
-	) Post detail page at /:category/:post_id
-		Get to this page by clicking on the comment count
-		Display all the comments here. List to edit comments here.
-		
-
-
-
-
+		Action and Reducer for comments
+			Edit_Comment, Delete_comment
 
 
 
 
 	) Sort posts by date and score
 
-
-	) MAKE COMMENTS ON POSTS
-	) EDIT And Delete Comments
 
 
 
