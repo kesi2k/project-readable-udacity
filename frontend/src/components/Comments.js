@@ -18,8 +18,10 @@ class Comments extends Component
   	}
 	render()
 	{
+		//console.log("In comments render", this.props.match.params)
 		const comments = this.props.comments.comments
 		const id = this.props.match.params.id
+		const cat = this.props.match.params.cat
 
 		if(!comments)
 		{
@@ -45,7 +47,7 @@ class Comments extends Component
 		                        <p> {comment.body} </p>
 		                        <p> Author: { comment.author } </p>
 		                        <p> {new Date(comment.timestamp).toUTCString() } </p>
-		                        <Link to={'/posts/'+comment.id}>
+		                        <Link to={'/' + cat + '/' + id + '/' + 'editComment' + '/' + comment.id}>
 		                          <button className="btn btn-warning">
 		                            Edit Comment
 		                          </button>

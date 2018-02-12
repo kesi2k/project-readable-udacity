@@ -2,6 +2,8 @@ TODO:
 	Comments below that.
 		
 		Component for comment EDIT Details
+			Load a specific comment to be edited
+			Comment action to PUT edited comment on server 
 
 		DELETE COMMENT LOGIC.
 

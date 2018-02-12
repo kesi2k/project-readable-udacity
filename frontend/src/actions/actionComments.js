@@ -4,6 +4,7 @@ import uuid from 'uuid';
 
 export const ALL_COMMENTS = 'ALL_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const SINGLE_COMMENT = 'SINGLE_COMMENT';
 
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
@@ -54,7 +55,6 @@ export function addCommentToServer(data, commentParentId)
 	    parentId: commentParentId
 	  }; 
 
-	console.log("in action", commentData);
 	return dispatch => {
 		axios.post(`${api}/comments`, commentData)
 			.then(res => {
@@ -62,6 +62,20 @@ export function addCommentToServer(data, commentParentId)
 			})
 	}
 
+}
+
+export function getCommentById(commentId, callback)
+{
+	return dispatch => {
+		axios.get(`${api}/comments/${commentId}`)
+			.then(res => {		
+		        if(typeof callback !== 'undefined')
+		        {
+		          callback(res.data)
+		        }
+				dispatch({ type: SINGLE_COMMENT, comment: res.data })
+			})
+	}
 }
 
 
