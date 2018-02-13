@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { getCommentById } from '../actions/actionComments.js';
+import { getCommentById, EditSpecificComment } from '../actions/actionComments.js';
 import { Field, reduxForm } from 'redux-form';
 import { reducer as formReducer } from 'redux-form';
 
@@ -53,14 +53,14 @@ class EditComment extends Component
 	onSubmit(values)
 	{
 	    // Route (root index.js file) passes in properties to a component rendered in it. History is one such prop
-	    //let id = this.props.post.id
+	    let id = this.props.match.params.id
+	    const cat = this.props.match.params.cat
 	    //console.log(values)
-	    console.log('In submit', values)
-
+	    values.timestamp = Date.now();
     
-	    // this.props.editSpecificPost(id, values, () => {
-	    //   this.props.history.push('/');
-	    // });
+	    this.props.EditSpecificComment(id, values, () => {
+	      this.props.history.push('/' + cat + '/' + this.props.comment.parentId);
+	    });
 
 	}
 
@@ -102,15 +102,12 @@ class EditComment extends Component
 	                name="body"
 	                component={this.renderField}
 	              />
-
+	            <button type="submit" className="btn btn-primary"> Submit</button>
 				<Link to={'/' + cat + '/' + comment.parentId }>
-			           <button className="btn btn-warning">
+			           <button className="btn btn-warning" style={{"marginLeft": 10}}>
 			              Return to Comment/Cancel
 			           </button>
 				</Link>
-
-			    <button type="submit" className="btn btn-primary" style={{"marginLeft": 10}}> Submit</button>
-
 			    </form>
 			</div>
 			)
@@ -128,6 +125,6 @@ function mapStateToProps(state, ownProps)
 
 export default reduxForm({
 	form: 'EditComment'
-})(connect(mapStateToProps, { getCommentById })(EditComment))
+})(connect(mapStateToProps, { getCommentById, EditSpecificComment })(EditComment))
 
 // http://localhost:3000/react/8xf0y6ziyjabvozdd253nd

@@ -1,14 +1,11 @@
 TODO:
 	Comments below that.
 		
-		Component for comment EDIT Details
-			Load a specific comment to be edited
-			Comment action to PUT edited comment on server 
 
 		DELETE COMMENT LOGIC.
 
 		Action and Reducer for comments
-			Edit_Comment, Delete_comment
+			Delete_comment
 
 
 

@@ -5,6 +5,7 @@ import uuid from 'uuid';
 export const ALL_COMMENTS = 'ALL_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const SINGLE_COMMENT = 'SINGLE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
@@ -79,7 +80,19 @@ export function getCommentById(commentId, callback)
 }
 
 
+// | `PUT /comments/:id` | Edit the details of an existing comment. | **timestamp** - timestamp. Get this however you want. <br> **body** - [String] |
+export function EditSpecificComment(id, values, callback)
+{
+	//console.log('In edit comment action', id, values)
+	return dispatch => {
+		axios.put(`${api}/comments/${id}`, values)
+			.then(res => {
+				callback()
+				dispatch({ type: EDIT_COMMENT, comment: res.data})
+			})
+	}
 
+}
 
 
 
