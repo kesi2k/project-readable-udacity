@@ -94,7 +94,7 @@ class EditComment extends Component
 
 		return(
 			<div>
-				<h1> In the Edit Comment </h1>
+				<h1> Edit Comment </h1>
 	            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}
 	              >
 	              <Field

@@ -1,4 +1,4 @@
-import  { ALL_COMMENTS, ADD_COMMENT, SINGLE_COMMENT, EDIT_COMMENT }  from '../actions/actionComments.js'
+import  { ALL_COMMENTS, ADD_COMMENT, SINGLE_COMMENT, EDIT_COMMENT, DELETE_COMMENT }  from '../actions/actionComments.js'
 import _ from 'lodash';
 
 
@@ -23,6 +23,10 @@ export default function(state={}, action)
 			const editedComment = action.comment;
 			const newEditedState = { ...state };
 			newEditedState[editedComment.id] = comment;
+
+		case DELETE_COMMENT:
+			return _.omit(state, action.comment)
+
 
 		default:
 			return state

@@ -6,6 +6,7 @@ export const ALL_COMMENTS = 'ALL_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const SINGLE_COMMENT = 'SINGLE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
@@ -92,6 +93,19 @@ export function EditSpecificComment(id, values, callback)
 			})
 	}
 
+}
+
+
+export function deleteComment(commentId, callback)
+{
+	return dispatch => {
+		axios.delete(`${api}/comments/${commentId}`)
+			.then(res => {
+				callback()
+				dispatch({ type: DELETE_COMMENT, comment: commentId})
+			})
+
+	}
 }
 
 

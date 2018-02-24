@@ -33,7 +33,7 @@ export default function(state={}, action){
 			return newEditedState
 
 		case DELETE_POST:
-			return _.omit(state, action.payload);
+			return _.omit(state, action.post);
 
 
 		default:

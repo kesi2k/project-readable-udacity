@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCommentsByPostId } from '../actions/actionComments.js'
+import { getCommentsByPostId, deleteComment } from '../actions/actionComments.js'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +16,22 @@ class Comments extends Component
 	    this.props.getCommentsByPostId(id)
 
   	}
+
+  	deleteComment(commentId)
+  	{
+  		//console.log(commentId)
+  		const postId = this.props.match.params.id
+
+
+  		this.props.deleteComment(commentId, () => {
+  			this.props.history.push(`/udacity/${postId}`)
+  		});
+
+
+  	}
+
+
+
 	render()
 	{
 		//console.log("In comments render", this.props.match.params)
@@ -52,7 +68,7 @@ class Comments extends Component
 		                            Edit Comment
 		                          </button>
 		                        </Link>
-		                        <button className="btn btn-danger" style={{"marginLeft": 10}}  >
+		                        <button className="btn btn-danger" style={{"marginLeft": 10}} onClick={ () => this.deleteComment(comment.id)} >
 		                          Delete Comment
 		                        </button>
 		                      </div>         
@@ -82,4 +98,4 @@ function mapStateToProps(state, ownProps)
 	comments: return {comments: state.commentsReducer}
 }
 
-export default connect(mapStateToProps, { getCommentsByPostId })(Comments);
+export default connect(mapStateToProps, { deleteComment, getCommentsByPostId })(Comments);

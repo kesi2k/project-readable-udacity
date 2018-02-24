@@ -16,7 +16,7 @@ class AllPosts extends Component {
   }
 
   deletePostButton(postId) {
-    console.log('In deletePostButt function', postId)
+    //console.log('In deletePostButt function', postId)
     this.props.deletePost(postId, () => {
       this.props.history.push('/');
     });
