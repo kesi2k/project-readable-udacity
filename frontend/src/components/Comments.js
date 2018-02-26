@@ -94,7 +94,7 @@ class Comments extends Component
 
 function mapStateToProps(state, ownProps)
 {
-	console.log("In comments", state)
+	//console.log("In comments", state)
 	comments: return {comments: state.commentsReducer}
 }
 

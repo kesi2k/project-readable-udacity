@@ -1,4 +1,4 @@
-import  { ALL_POSTS, ADD_POST, SINGLE_POST, EDIT_POST, DELETE_POST }  from '../actions/actionPosts.js'
+import  { ALL_POSTS, ADD_POST, SINGLE_POST, EDIT_POST, DELETE_POST, VOTE_POST }  from '../actions/actionPosts.js'
 import _ from 'lodash';
 
 
@@ -9,10 +9,10 @@ import _ from 'lodash';
 
 export default function(state={}, action){
 
-	//console.log('In reducer');
+	//console.log('In posts reducer');
 	//console.log(action)
 	//console.log(state)
-	//.log(action.post)
+	//console.log(post)
 
 	switch(action.type){
 		case ALL_POSTS: 
@@ -28,12 +28,21 @@ export default function(state={}, action){
 		case EDIT_POST:
 			const editedPost = action.post;
 			const newEditedState = { ...state };
-			newEditedState[editedPost.id] = post;
+			newEditedState[editedPost.id] = editedPost;
 
 			return newEditedState
 
 		case DELETE_POST:
 			return _.omit(state, action.post);
+
+		case VOTE_POST:
+			const votedPost = action.post;
+			const newVotedState = { ...state };
+			newVotedState[votedPost.id] = votedPost;
+
+			console.log("In VOTE_POST", votedPost);
+
+			return newVotedState;
 
 
 		default:

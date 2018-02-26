@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { EDIT_POST, SINGLE_POST, DELETE_POST }  from '../actions/actionPosts.js'
+import  { EDIT_POST, SINGLE_POST, DELETE_POST, VOTE_POST }  from '../actions/actionPosts.js'
 
 const api = process.env.REACT_APP_READABLE || 'http://localhost:3001'
 
@@ -92,3 +92,16 @@ export const deletePost = (id, callback) => {
   }
 }
 
+
+// | `POST /posts/:id` | Used for voting on a post. | **option** - [String]: Either `"upVote"` or `"downVote"`. |
+
+export const vote = (postId, vote, callback) => {
+  //console.log("In Vote action", postId, vote);
+  return dispatch => {
+    axios.post(`${api}/posts/${postId}`, {option: vote})
+      .then(res => {
+        callback()
+        dispatch ({type: VOTE_POST, post: res.data })
+      })
+  }
+}

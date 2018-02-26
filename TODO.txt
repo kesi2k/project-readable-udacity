@@ -1,15 +1,6 @@
 TODO:
-	Comments below that.
-		
 
-		DELETE COMMENT LOGIC.
-
-		Action and Reducer for comments
-			Delete_comment
-
-
-
-
+	) Vote on comments
 	) Sort posts by date and score
 
 

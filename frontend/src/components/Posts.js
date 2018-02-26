@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // { getCategories } gets used in connect.
 import { getPosts, getPostsByCats } from '../actions/actionPosts.js'
 import { Route, Link } from 'react-router-dom';
-import { deletePost } from '../utils/ServerAPI'
+import { deletePost, vote } from '../utils/ServerAPI'
 
 //import { toUTCString } from 'datejs';
 
@@ -21,6 +21,15 @@ class AllPosts extends Component {
       this.props.history.push('/');
     });
   }
+
+  votePostButton(postId, voteType){
+    //console.log('In likePostBut function', postId, voteType)
+    this.props.vote(postId, voteType, () => {
+      this.props.history.push('/');
+    });
+
+  }
+
 
 
 
@@ -41,7 +50,7 @@ class AllPosts extends Component {
 
     if(posts)
     {
-      console.log('In comments render', posts)
+      //console.log('In comments render', posts)
     }
 
     const ColoredLine = ({ color }) => (
@@ -76,14 +85,27 @@ class AllPosts extends Component {
                         <p> {post.body} </p>
                         <p> Author: { post.author } </p>
                         <p> {new Date(post.timestamp).toUTCString() } </p>
-                        <Link to={'/posts/'+post.id}>
-                          <button className="btn btn-warning">
-                            Edit Post
+
+                        <div>
+                          <Link to={'/posts/'+post.id}>
+                            <button className="btn btn-warning">
+                              Edit Post
+                            </button>
+                          </Link>
+                          <button className="btn btn-danger" style={{"marginLeft": 10}}  onClick={ () => this.deletePostButton(post.id)}>
+                            Delete Post
                           </button>
-                        </Link>
-                        <button className="btn btn-danger" style={{"marginLeft": 10}}  onClick={ () => this.deletePostButton(post.id)}>
-                          Delete Post
-                        </button>
+                        </div>
+
+                        <div style={{"marginTop": 10}}>
+                          <button className="btn btn-primary"  onClick={ () => this.votePostButton(post.id, 'upVote')}>
+                            Like Post
+                          </button>
+                          <button className="btn btn-danger"  style={{"marginLeft": 10}} onClick={ () => this.votePostButton(post.id, 'downVote')}>
+                            Unlike Post
+                          </button>
+                        </div>
+
                       </div>
 
                       <div className="col-md-6 col-lg-6">
@@ -129,4 +151,4 @@ function mapSateToProps(state){
 }
 
 
-export default connect(mapSateToProps, { getPosts, getPostsByCats, deletePost })(AllPosts)
+export default connect(mapSateToProps, { getPosts, getPostsByCats, deletePost, vote })(AllPosts)
