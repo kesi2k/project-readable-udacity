@@ -53,16 +53,8 @@ class App extends Component {
             />
 
 
-
-
-
             <Route exact path='/:cat/:id/editComment/:id' component={props => <EditComment {...props}/>} 
             />
-
-
-
-
-
 
 
           </Switch>

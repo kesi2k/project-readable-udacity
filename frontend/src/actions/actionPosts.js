@@ -15,6 +15,7 @@ export const SINGLE_POST = 'SINGLE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const VOTE_POST = 'VOTE_POST';
+export const SORT_POSTS = 'SORT_POSTS';
 
 export function getPosts(){
 	 return dispatch => {
@@ -40,7 +41,13 @@ export function addPost(data){
 	 return dispatch => {
    PostsAPI.addPostToSer(postData);
      }
+}
 
+export function sortPosts(sortCat)
+{
+  return dispatch => {
+    dispatch ({ type: SORT_POSTS, payload: sortCat})
+  }
 }
 
 
