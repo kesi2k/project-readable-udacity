@@ -176,8 +176,6 @@ class AllPosts extends Component {
 }
 
 function mapSateToProps(state){
-  console.log(state.sortReducer)
-  console.log(state.postsReducer)
   return { sortedPostsArgu: state.sortReducer, posts: state.postsReducer}
 
 }

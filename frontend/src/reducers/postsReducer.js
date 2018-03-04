@@ -39,8 +39,7 @@ export default function(state={}, action){
 			const votedPost = action.post;
 			const newVotedState = { ...state };
 			newVotedState[votedPost.id] = votedPost;
-
-			console.log("In VOTE_POST", votedPost);
+			//console.log("In VOTE_POST", votedPost);
 
 			return newVotedState;
 

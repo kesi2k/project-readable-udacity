@@ -95,7 +95,7 @@ componentDidMount(){
     // onSubmit.bind(this) will bind the properties of the component with onSubmit
     const { handleSubmit } = this.props
     const post = this.props.post
-    console.log('In render', post)
+    //console.log('In render', post)
 
     if(!post){
       return (
